@@ -17,7 +17,7 @@
         </select>
       </div>
       <h4 class="chart-js-dashboard-title">{{ checkTitle }}</h4>
-      <line-chart :chart-data="datacollection" :options="options"></line-chart>
+      <line-chart :chart-data="datacollection" :options="options" :height="card.options && !isNaN(card.options.height) ? card.options.height : 120"></line-chart>
     </card>
 </template>
 
