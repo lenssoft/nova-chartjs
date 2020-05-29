@@ -145,7 +145,14 @@ class TotalRecordsController extends Controller
                 foreach($queryFilter as $qF){
                     if(isset($qF['value'])){
                         if(isset($qF['operator'])){
-                            $query->where($qF['key'], $qF['operator'], $qF['value']);
+                            switch ($qF['operator']) {
+                                case 'IN':
+                                    $query->whereIn($qF['key'], $qF['value']);
+                                    break;
+                                default:
+                                    $query->where($qF['key'], $qF['operator'], $qF['value']);
+                                    break;
+                            }
                         } else {
                             $query->where($qF['key'], $qF['value']);
                         }
